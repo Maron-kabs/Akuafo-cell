@@ -23,20 +23,20 @@
 
 <style>
   :root {
-    --bg:        #F5F3F6;
+    --bg:        #F0F4EA;
     --card:      #FFFFFF;
-    --ink:       #241C2B;
-    --muted:     rgba(36,28,43,0.60);
-    --faint:     rgba(36,28,43,0.40);
-    --brand:     #7C3A93;
-    --brand-deep:#5E2A70;
-    --brand-bg:  rgba(124,58,147,0.10);
-    --gold:      #C8952E;
+    --ink:       #1B2A1E;
+    --muted:     rgba(27,42,30,0.60);
+    --faint:     rgba(27,42,30,0.40);
+    --brand:     #2E8B4E;
+    --brand-deep:#1F6437;
+    --brand-bg:  rgba(46,139,78,0.12);
+    --gold:      #D9A62E;
     --danger:    #C0524A;
-    --line:      rgba(36,28,43,0.10);
-    --line-2:    rgba(36,28,43,0.16);
-    --hero-1:    #6B2F82;
-    --hero-2:    #4E2160;
+    --line:      rgba(27,42,30,0.10);
+    --line-2:    rgba(27,42,30,0.16);
+    --hero-1:    #256B3B;
+    --hero-2:    #14431F;
 
     --r-lg: 20px; --r-md: 13px; --r-sm: 9px;
     --sh-1: 0 1px 2px rgba(36,28,43,0.05), 0 10px 24px -14px rgba(36,28,43,0.20);
@@ -47,20 +47,20 @@
     color-scheme: light;
   }
   [data-theme="dark"] {
-    --bg:        #17131F;
-    --card:      #211B2C;
-    --ink:       #ECE6F2;
-    --muted:     rgba(236,230,242,0.62);
-    --faint:     rgba(236,230,242,0.42);
-    --brand:     #B57BC8;
-    --brand-deep:#9A5EB0;
-    --brand-bg:  rgba(181,123,200,0.16);
+    --bg:        #10160F;
+    --card:      #18211A;
+    --ink:       #E7EFE4;
+    --muted:     rgba(231,239,228,0.62);
+    --faint:     rgba(231,239,228,0.42);
+    --brand:     #52B56C;
+    --brand-deep:#3C8C50;
+    --brand-bg:  rgba(82,181,108,0.16);
     --gold:      #E6C06A;
     --danger:    #E07A72;
-    --line:      rgba(236,230,242,0.12);
-    --line-2:    rgba(236,230,242,0.22);
-    --hero-1:    #4E2160;
-    --hero-2:    #35163F;
+    --line:      rgba(231,239,228,0.12);
+    --line-2:    rgba(231,239,228,0.22);
+    --hero-1:    #1E5C33;
+    --hero-2:    #123018;
     --sh-1: 0 1px 2px rgba(0,0,0,0.4), 0 12px 28px -16px rgba(0,0,0,0.6);
     color-scheme: dark;
   }
@@ -80,7 +80,12 @@
   .theme-toggle:hover { border-color: var(--brand); }
   .theme-toggle:active { transform: translateY(1px); }
 
-  .hero { background: radial-gradient(120% 160% at 90% 0%, var(--hero-1), var(--hero-2)); color: #fff; border-radius: var(--r-lg); padding: 1.5rem 1.7rem; margin: 1.2rem 0 1.1rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; box-shadow: 0 14px 34px -16px rgba(78,33,96,0.6); }
+  .hero { position: relative; overflow: hidden; background: radial-gradient(120% 160% at 90% 0%, var(--hero-1), var(--hero-2)); color: #fff; border-radius: var(--r-lg); padding: 1.5rem 1.7rem; margin: 1.2rem 0 1.1rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; box-shadow: 0 14px 34px -16px rgba(20,67,31,0.55); }
+  .hero-content, .hero-stats { position: relative; z-index: 1; }
+  .hero-leaf { position: absolute; z-index: 0; pointer-events: none; }
+  .hero-leaf.a { right: -16px; bottom: -30px; opacity: 0.14; transform: rotate(10deg); }
+  .hero-leaf.b { right: 96px; bottom: -38px; opacity: 0.10; transform: rotate(-20deg); }
+  .hero-leaf svg { display: block; }
   .hero-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.18em; opacity: 0.65; }
   .hero-name { font-family: var(--font-display); font-weight: 700; font-size: 1.7rem; line-height: 1.1; margin-top: 0.25rem; }
   .hero-stats { display: flex; gap: 1.8rem; }
@@ -161,7 +166,7 @@
   <div class="wrap">
     <div class="top-row">
       <div class="brand">
-        <span class="mark">✦</span>
+        <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="#fff" d="M6.05 8.05c-2.73 2.73-2.73 7.15-.02 9.88 1.47-3.4 4.09-6.24 7.36-7.93-2.77 2.34-4.71 5.61-5.39 9.32 2.6 1.23 5.8.78 7.95-1.37C19.43 14.47 20 4 20 4S9.53 4.57 6.05 8.05z"/></svg></span>
         <span>
           <span class="name">Cell Book</span>
           <input class="cellin" id="cellName" value="My Cell" maxlength="40" aria-label="Cell name" placeholder="Name your cell…" />
@@ -178,7 +183,9 @@
 <main class="wrap">
 
   <section class="hero">
-    <div>
+    <div class="hero-leaf a" aria-hidden="true"><svg viewBox="0 0 24 24" width="150" height="150"><path fill="#fff" d="M6.05 8.05c-2.73 2.73-2.73 7.15-.02 9.88 1.47-3.4 4.09-6.24 7.36-7.93-2.77 2.34-4.71 5.61-5.39 9.32 2.6 1.23 5.8.78 7.95-1.37C19.43 14.47 20 4 20 4S9.53 4.57 6.05 8.05z"/></svg></div>
+    <div class="hero-leaf b" aria-hidden="true"><svg viewBox="0 0 24 24" width="96" height="96"><path fill="#fff" d="M6.05 8.05c-2.73 2.73-2.73 7.15-.02 9.88 1.47-3.4 4.09-6.24 7.36-7.93-2.77 2.34-4.71 5.61-5.39 9.32 2.6 1.23 5.8.78 7.95-1.37C19.43 14.47 20 4 20 4S9.53 4.57 6.05 8.05z"/></svg></div>
+    <div class="hero-content">
       <div class="hero-label">CELL</div>
       <div class="hero-name" id="heroName">My Cell</div>
     </div>
@@ -358,7 +365,7 @@ function renderMembers() {
       <div class="macts"><button class="icon-btn" data-edit="${m.id}">Edit</button><button class="icon-btn del" data-del="${m.id}" aria-label="Delete">✕</button></div>
     </li>`;
   }).join("");
-  list.querySelectorAll("[data-edit]").forEach(b => b.addEventListener("click", () => { const m = state.members.find(x => x.id === Number(b.dataset.edit)); if (m) { setMemberForm(m); window.scrollTo({ top: 0, behavior: "smooth" }); } }));
+  list.querySelectorAll("[data-edit]").forEach(b => b.addEventListener("click", () => { const m = state.members.find(x => x.id === Number(b.dataset.edit)); if (m) { setMemberForm(m); try { window.scrollTo({ top: 0, behavior: "smooth" }); } catch (e) {} } }));
   list.querySelectorAll("[data-del]").forEach(b => b.addEventListener("click", () => {
     const m = state.members.find(x => x.id === Number(b.dataset.del));
     if (m && confirm(`Remove ${m.name} from the book?`)) { state.members = state.members.filter(x => x.id !== m.id); if (editMemberId === m.id) setMemberForm(null); save(); renderMembers(); renderHero(); }
@@ -402,7 +409,7 @@ function renderProgramme() {
       <div class="pmain"><div class="ptitle">${escapeHtml(p.title)}</div>${p.venue ? `<div class="pvenue">${escapeHtml(p.venue)}</div>` : ""}</div>
       <div class="macts"><button class="icon-btn" data-pedit="${p.id}">Edit</button><button class="icon-btn del" data-pdel="${p.id}" aria-label="Delete">✕</button></div>
     </li>`).join("");
-  list.querySelectorAll("[data-pedit]").forEach(b => b.addEventListener("click", () => { const p = state.programme.find(x => x.id === Number(b.dataset.pedit)); if (p) { setProgForm(p); window.scrollTo({ top: 0, behavior: "smooth" }); } }));
+  list.querySelectorAll("[data-pedit]").forEach(b => b.addEventListener("click", () => { const p = state.programme.find(x => x.id === Number(b.dataset.pedit)); if (p) { setProgForm(p); try { window.scrollTo({ top: 0, behavior: "smooth" }); } catch (e) {} } }));
   list.querySelectorAll("[data-pdel]").forEach(b => b.addEventListener("click", () => {
     const p = state.programme.find(x => x.id === Number(b.dataset.pdel));
     if (p && confirm(`Remove "${p.title}" from the programme?`)) { state.programme = state.programme.filter(x => x.id !== p.id); if (editProgId === p.id) setProgForm(null); save(); renderProgramme(); renderHero(); }
@@ -429,8 +436,8 @@ function printHtml(html) {
 function docShell(title, bodyInner) {
   return `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${escapeHtml(title)}</title><style>
     *{box-sizing:border-box;} body{font-family:Georgia,'Times New Roman',serif;color:#111;margin:32px;line-height:1.5;}
-    .head{border-bottom:3px solid #7C3A93;padding-bottom:12px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:flex-end;}
-    .head h1{margin:0;font-size:20px;color:#5E2A70;} .head .sub{font-size:12px;color:#555;margin-top:3px;} .head .date{font-size:11px;color:#666;}
+    .head{border-bottom:3px solid #2E8B4E;padding-bottom:12px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:flex-end;}
+    .head h1{margin:0;font-size:20px;color:#1F6437;} .head .sub{font-size:12px;color:#555;margin-top:3px;} .head .date{font-size:11px;color:#666;}
     table{width:100%;border-collapse:collapse;font-size:12px;} th,td{text-align:left;padding:6px 9px;border-bottom:1px solid #e6e6e6;vertical-align:top;}
     th{font-size:10px;text-transform:uppercase;color:#666;letter-spacing:0.04em;} td.c,th.c{text-align:center;}
     .muted{color:#999;} tr{page-break-inside:avoid;}
